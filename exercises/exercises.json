@@ -1,0 +1,14 @@
+{
+    "exercises": [
+        {
+            "name": "hello-world",
+            "path": "exercises/hello-world",
+            "hint": "Hint to fix hello world"
+        },
+        {
+            "name": "hello-world-2",
+            "path": "exercises/hello-world-2",
+            "hint": "Hint to fix hello world 2"
+        }
+    ]
+}
