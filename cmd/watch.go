@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/fatih/color"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/cobra"
 )
@@ -50,17 +51,21 @@ func extractExercises() ([]*Exercise, error) {
 	return exerciseList.Exercises, nil
 }
 
+func clearScreen() {
+	fmt.Print("\033[H\033[2J")
+}
+
 func executeExercise(ex *Exercise) error {
 	cmd := exec.Command("clarinet", "check")
 	cmd.Dir = ex.Path
 	cmd.Env = []string{"CLARINET_DISABLE_HINTS=1"}
-	out, err := cmd.Output()
+	_, err := cmd.Output()
 	if err != nil {
-		fmt.Println("Hint: ", ex.Hint)
-		fmt.Printf("Failed to run %s with error: %s\n", ex.Name, err.Error())
+		color.Red("❌ Compilation Failed")
+		color.Yellow("💡 Hint: %s", ex.Hint)
 		return err
 	}
-	fmt.Println(string(out))
+	color.Green("✅ Successfully compiled %s", ex.Name)
 	return nil
 }
 
@@ -73,19 +78,18 @@ func fileWatcher(complete chan ExerciseStatus, watcher *fsnotify.Watcher, ex *Ex
 				return
 			}
 			if event.Op&fsnotify.Write == fsnotify.Write {
+				clearScreen()
 				err := executeExercise(ex)
 				if err == nil {
-					log.Println("Compiled successfully")
 					complete <- Succeeded
 					return
 				}
 			}
-		case err, ok := <-watcher.Errors:
+		case _, ok := <-watcher.Errors:
 			if !ok {
 				complete <- Failed
 				return
 			}
-			log.Println("error:", err)
 		}
 	}
 }
