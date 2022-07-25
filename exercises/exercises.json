@@ -1,14 +1,14 @@
 {
     "exercises": [
         {
-            "name": "hello-world",
-            "path": "exercises/hello-world",
-            "hint": "Hint to fix hello world"
+            "name": "Basics",
+            "path": "exercises/basics",
+            "hint": "Clarity features LISP-link syntax — Lists within Lists.\nFix simple parentheses errors.\nMore here: https://book.clarity-lang.org/ch01-02-clarity-basics.html"
         },
         {
-            "name": "hello-world-2",
-            "path": "exercises/hello-world-2",
-            "hint": "Hint to fix hello world 2"
+            "name": "Types: Primitives",
+            "path": "exercises/types/primitives",
+            "hint": "Types are strictly enforced and cannot mix in Clarity.\nFix any kind of type mixing errors in primitives.\nMore here: https://book.clarity-lang.org/ch02-01-primitive-types.html"
         }
     ]
 }

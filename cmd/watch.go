@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/fatih/color"
 	"github.com/fsnotify/fsnotify"
@@ -61,7 +62,10 @@ func executeExercise(ex *Exercise) error {
 	cmd.Env = []string{"CLARINET_DISABLE_HINTS=1"}
 	_, err := cmd.Output()
 	if err != nil {
-		color.Red("❌ Compilation Failed")
+		clarFilePath := ex.Path
+		clarFileName := clarFilePath[strings.LastIndex(clarFilePath, "/")+1:]
+		color.Red("❌ Compilation Failed — %s\n\n", ex.Name)
+		color.Blue("📂 Error in file: %s/contracts/%s.clar\n\n", clarFilePath, clarFileName)
 		color.Yellow("💡 Hint: %s", ex.Hint)
 		return err
 	}

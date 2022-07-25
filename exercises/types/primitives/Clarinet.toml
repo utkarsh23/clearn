@@ -1,11 +1,11 @@
 [project]
-name = "hello-world"
+name = "primitives"
 authors = []
 description = ""
 telemetry = false
 requirements = []
-[contracts.hello-world]
-path = "contracts/hello-world.clar"
+[contracts.primitives]
+path = "contracts/primitives.clar"
 depends_on = []
 
 [repl]
