@@ -9,6 +9,21 @@
             "name": "Types: Primitives",
             "path": "exercises/types/primitives",
             "hint": "Types are strictly enforced and cannot mix in Clarity.\nFix any kind of type mixing errors in primitives.\nMore here: https://book.clarity-lang.org/ch02-01-primitive-types.html"
+        },
+        {
+            "name": "Types: Sequences",
+            "path": "exercises/types/sequences",
+            "hint": "Sequences hold a sequence of data.\nClarity provides three different kinds of sequences: buffers, strings, and lists.\nMore here: https://book.clarity-lang.org/ch02-02-sequence-types.html"
+        },
+        {
+            "name": "Types: Composites",
+            "path": "exercises/types/composites",
+            "hint": "Composites are complex types that contain a number of other types.\nClarity provides three different kinds of composites: optionals, tuples, and responses.\nMore here: https://book.clarity-lang.org/ch02-03-composite-types.html"
+        },
+        {
+            "name": "Keywords",
+            "path": "exercises/keywords",
+            "hint": "Keywords are special terms that have an assigned meaning. e.g. true, false, none\nMore here: https://book.clarity-lang.org/ch03-00-keywords.html"
         }
     ]
 }
