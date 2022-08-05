@@ -3,27 +3,82 @@
         {
             "name": "Basics",
             "path": "exercises/basics",
-            "hint": "Clarity features LISP-link syntax — Lists within Lists.\nFix simple parentheses errors.\nMore here: https://book.clarity-lang.org/ch01-02-clarity-basics.html"
+            "hasTests": false,
+            "compilationHint": "Fix simple parentheses errors."
         },
         {
             "name": "Types: Primitives",
             "path": "exercises/types/primitives",
-            "hint": "Types are strictly enforced and cannot mix in Clarity.\nFix any kind of type mixing errors in primitives.\nMore here: https://book.clarity-lang.org/ch02-01-primitive-types.html"
+            "hasTests": false,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors."
         },
         {
             "name": "Types: Sequences",
             "path": "exercises/types/sequences",
-            "hint": "Sequences hold a sequence of data.\nClarity provides three different kinds of sequences: buffers, strings, and lists.\nMore here: https://book.clarity-lang.org/ch02-02-sequence-types.html"
+            "hasTests": false,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors."
         },
         {
             "name": "Types: Composites",
             "path": "exercises/types/composites",
-            "hint": "Composites are complex types that contain a number of other types.\nClarity provides three different kinds of composites: optionals, tuples, and responses.\nMore here: https://book.clarity-lang.org/ch02-03-composite-types.html"
+            "hasTests": false,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors."
         },
         {
             "name": "Keywords",
             "path": "exercises/keywords",
-            "hint": "Keywords are special terms that have an assigned meaning. e.g. true, false, none\nMore here: https://book.clarity-lang.org/ch03-00-keywords.html"
+            "hasTests": true,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors.",
+            "tests": [
+                {
+                    "name": "Test for performing addition on block-height",
+                    "hint": "Fix the get-block-height function to get (block height + \"64\")."
+                }
+            ]
+        },
+        {
+            "name": "Storing Data: Constants",
+            "path": "exercises/storing-data/constants",
+            "hasTests": true,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors.",
+            "tests": [
+                {
+                    "name": "Test for verifying the deployer wallet address",
+                    "hint": "Fix the contract-owner constant to be the contract deployer's principal."
+                }
+            ]
+        },
+        {
+            "name": "Storing Data: Variables",
+            "path": "exercises/storing-data/variables",
+            "hasTests": true,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors.",
+            "tests": [
+                {
+                    "name": "Test for verifying the sender wallet address",
+                    "hint": "Fix the \"who\" key to return the sender address."
+                },
+                {
+                    "name": "Test for performing set & get on variable: high-score",
+                    "hint": "Fix the \"score\" key to return the argument sent to the set function."
+                }
+            ]
+        },
+        {
+            "name": "Storing Data: Maps",
+            "path": "exercises/storing-data/maps",
+            "hasTests": true,
+            "compilationHint": "Fix any kind of type mixing or wrongly used type errors.",
+            "tests": [
+                {
+                    "name": "Test for performing set & get on map: orders",
+                    "hint": "Fix the set-order-one function to set amount the argument value against key \"1\"."
+                },
+                {
+                    "name": "Test for performing set & get on map: highest-bids",
+                    "hint": "Fix the set-highest-bids function to set the asset principal to SP3KANBW2C4E5BRPWNTWZCCDGF2F87CW9D9KV0FFK."
+                }
+            ]
         }
     ]
 }

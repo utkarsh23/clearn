@@ -22,9 +22,14 @@ const (
 )
 
 type Exercise struct {
-	Name string `json:"name"`
-	Path string `json:"path"`
-	Hint string `json:"hint"`
+	Name            string `json:"name"`
+	Path            string `json:"path"`
+	HasTests        bool   `json:"hasTests"`
+	CompilationHint string `json:"compilationHint"`
+	Tests           []struct {
+		Name string `json:"name"`
+		Hint string `json:"hint"`
+	} `json:"tests"`
 }
 
 type ExerciseList struct {
@@ -65,11 +70,33 @@ func executeExercise(ex *Exercise) error {
 		clarFilePath := ex.Path
 		clarFileName := clarFilePath[strings.LastIndex(clarFilePath, "/")+1:]
 		color.Red("❌ Compilation Failed — %s\n\n", ex.Name)
-		color.Blue("📂 Error in file: %s/contracts/%s.clar\n\n", clarFilePath, clarFileName)
-		color.Yellow("💡 Hint: %s", ex.Hint)
+		color.Blue("📂 Fix the file: %s/contracts/%s.clar\n\n", clarFilePath, clarFileName)
+		color.Yellow("💡 Help:\n   %s", ex.CompilationHint)
 		return err
 	}
-	color.Green("✅ Successfully compiled %s", ex.Name)
+	color.Green("✅ Successfully compiled — %s", ex.Name)
+	return nil
+}
+
+func executeTests(ex *Exercise) error {
+	color.Cyan("🧪 Running tests for %s", ex.Name)
+	cmd := exec.Command("clarinet", "test")
+	cmd.Dir = ex.Path
+	cmd.Env = []string{"CLARINET_DISABLE_HINTS=1"}
+	testResults, err := cmd.Output()
+	fmt.Println(string(testResults))
+	if err != nil {
+		clarFilePath := ex.Path
+		clarFileName := clarFilePath[strings.LastIndex(clarFilePath, "/")+1:]
+		color.Red("❌ Some or all tests Failed — %s\n\n", ex.Name)
+		color.Blue("📂 Fix the file: %s/contracts/%s.clar\n\n", clarFilePath, clarFileName)
+		color.Yellow("💡 Help:")
+		for ind, test := range ex.Tests {
+			color.Yellow("\n  Test #%d: %s\n  %s", ind+1, test.Name, test.Hint)
+		}
+		return err
+	}
+	color.Green("✅ All tests succeeded — %s", ex.Name)
 	return nil
 }
 
@@ -85,8 +112,16 @@ func fileWatcher(complete chan ExerciseStatus, watcher *fsnotify.Watcher, ex *Ex
 				clearScreen()
 				err := executeExercise(ex)
 				if err == nil {
-					complete <- Succeeded
-					return
+					if ex.HasTests {
+						err := executeTests(ex)
+						if err == nil {
+							complete <- Succeeded
+							return
+						}
+					} else {
+						complete <- Succeeded
+						return
+					}
 				}
 			}
 		case _, ok := <-watcher.Errors:
@@ -109,7 +144,14 @@ func watch(cmd *cobra.Command, args []string) {
 
 		err := executeExercise(ex)
 		if err == nil {
-			continue
+			if ex.HasTests {
+				err := executeTests(ex)
+				if err == nil {
+					continue
+				}
+			} else {
+				continue
+			}
 		}
 
 		complete := make(chan ExerciseStatus)

@@ -1,3 +1,8 @@
+;; --------------------------------------------------------------------------------
+;; Clarity features LISP-link syntax - Lists within Lists.
+;; More here: https://book.clarity-lang.org/ch01-02-clarity-basics.html
+;; --------------------------------------------------------------------------------
+
 ;; concatenate >> Hello World!
 concat "Hello" " World!")
 
