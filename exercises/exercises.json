@@ -79,6 +79,42 @@
                     "hint": "Fix the set-highest-bids function to set the asset principal to SP3KANBW2C4E5BRPWNTWZCCDGF2F87CW9D9KV0FFK."
                 }
             ]
+        },
+        {
+            "name": "Functions: Public",
+            "path": "exercises/functions/public",
+            "hasTests": true,
+            "compilationHint": "Fix syntax errors in the clarity code.",
+            "tests": [
+                {
+                    "name": "Test for performing sum of three numbers",
+                    "hint": "Finish the public function \"sum-three\" to take in 3 unsigned integers and return an \"ok\" response with their sum."
+                }
+            ]
+        },
+        {
+            "name": "Functions: Private",
+            "path": "exercises/functions/private",
+            "hasTests": true,
+            "compilationHint": "Fix syntax errors in the clarity code.",
+            "tests": [
+                {
+                    "name": "Test for validating if public function caller is the deployer",
+                    "hint": "Finish the private function \"is-valid-caller\" to return a boolean whether the caller is the deployer of the contract."
+                }
+            ]
+        },
+        {
+            "name": "Functions: Read Only",
+            "path": "exercises/functions/read-only",
+            "hasTests": true,
+            "compilationHint": "Fix syntax errors in the clarity code.",
+            "tests": [
+                {
+                    "name": "Test for fetching the deployer's counter value",
+                    "hint": "Finish the read-only function \"get-my-counter\" to return an optional with the deployer's counter value."
+                }
+            ]
         }
     ]
 }
