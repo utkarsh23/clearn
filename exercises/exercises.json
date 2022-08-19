@@ -115,6 +115,36 @@
                     "hint": "Finish the read-only function \"get-my-counter\" to return an optional with the deployer's counter value."
                 }
             ]
+        },
+        {
+            "name": "Control Flow & Error Hanlding: Asserts",
+            "path": "exercises/control-flow-and-error-handling/asserts",
+            "hasTests": true,
+            "compilationHint": "Fix syntax errors in the clarity code.",
+            "tests": [
+                {
+                    "name": "Test for asserting that the function caller is the deployer.",
+                    "hint": "Change the public function \"add-recipient\" to assert that the function caller be the function deployer."
+                }
+            ]
+        },
+        {
+            "name": "Control Flow & Error Hanlding: Try",
+            "path": "exercises/control-flow-and-error-handling/try",
+            "hasTests": false,
+            "compilationHint": "Fix syntax errors in the clarity code."
+        },
+        {
+            "name": "Control Flow & Error Hanlding: Unwrap",
+            "path": "exercises/control-flow-and-error-handling/unwrap",
+            "hasTests": true,
+            "compilationHint": "Fix syntax errors in the clarity code.",
+            "tests": [
+                {
+                    "name": "Test for unwrapping a listing ID from the listings map.",
+                    "hint": "Change the public function \"update-name\" to unwrap listing ID using the read-only function \"get-listing\"."
+                }
+            ]
         }
     ]
 }
