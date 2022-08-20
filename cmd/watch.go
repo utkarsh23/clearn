@@ -182,6 +182,9 @@ func watch(cmd *cobra.Command, args []string) {
 			os.Exit(1)
 		}
 	}
+
+	color.Magenta("\n🎉 Hurray! You've completed all the exercises 🚀")
+	color.Magenta("You're now ready to build applications using Clarity ✨")
 }
 
 var WatchCmd = &cobra.Command{
